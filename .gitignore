@@ -1,3 +1,4 @@
+data/VOCdevkit/*
 ## General
 
 # Compiled Object files
@@ -84,6 +85,7 @@ cmake_build
 
 # Generated documentation
 docs/_site
+docs/_includes
 docs/gathered
 _site
 doxygen
@@ -96,8 +98,3 @@ LOCK
 LOG*
 CURRENT
 MANIFEST-*
-
-# temporary directories
-jobs
-temp
-examples/*/*lmdb
