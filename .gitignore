@@ -1,2 +1,3 @@
 data/VOCdevkit/*
-models/VGGNet/VGG0712/*
+models/VGGNet/VGG0712/
+*.DS_Store
