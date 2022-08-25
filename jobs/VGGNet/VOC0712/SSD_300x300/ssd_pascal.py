@@ -243,7 +243,8 @@ snapshot_dir = "models/VGGNet/VOC0712/{}".format(job_name)
 # Directory which stores the job script and log file.
 job_dir = "jobs/VGGNet/VOC0712/{}".format(job_name)
 # Directory which stores the detection results.
-output_result_dir = "{}/data/VOCdevkit/results/VOC2007/{}/Main".format(os.environ['HOME'], job_name)
+# output_result_dir = "{}/data/VOCdevkit/results/VOC2007/{}/Main".format(os.environ['HOME'], job_name)
+output_result_dir = "{}/data/VOCdevkit/results/VOC2007/{}/Main".format('/app/caffe/', job_name)
 
 # model definition files.
 train_net_file = "{}/train.prototxt".format(save_dir)
@@ -334,8 +335,8 @@ gpulist = gpus.split(",")
 # num_gpus = len(gpulist)
 num_gpus = 0
 # Divide the mini-batch to different GPUs.
-batch_size = 32
-accum_batch_size = 32
+batch_size = 1
+accum_batch_size = 1
 iter_size = accum_batch_size / batch_size
 solver_mode = P.Solver.CPU
 device_id = 0
@@ -364,15 +365,16 @@ test_iter = int(math.ceil(float(num_test_image) / test_batch_size))
 
 solver_param = {
     # Train parameters
-    'base_lr': base_lr,
+#    'base_lr': base_lr,
+    'base_lr':18.0e-6,
     'weight_decay': 0.0005,
     'lr_policy': "multistep",
     'stepvalue': [80000, 100000, 120000],
     'gamma': 0.1,
     'momentum': 0.9,
     'iter_size': iter_size,
-    'max_iter': 120000,
-    'snapshot': 80000,
+    'max_iter': 1200,
+    'snapshot': 800,
     'display': 10,
     'average_loss': 10,
     'type': "SGD",
